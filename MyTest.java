@@ -35,7 +35,6 @@ class CustomArrayList<T> implements List<T> {
             newArrayList[i] = arrayList[i];
             arrayList[i] = null;
         }
-
         arrayList = newArrayList;
     }
 
@@ -258,12 +257,13 @@ class CustomArrayList<T> implements List<T> {
         }
         if ((fromIndex < 0) || (toIndex > size)) {
             return null;
+
         }
-        List list = new CustomArrayList(toIndex - fromIndex);
+        List customArrayList = new CustomArrayList(toIndex - fromIndex);
         for (int i = fromIndex; i < toIndex; i++) {
-            list.add(arrayList[i]);
+            customArrayList.add(arrayList[i]);
         }
-        return list;
+        return customArrayList;
     }
 
     @Override
@@ -300,7 +300,7 @@ class CustomArrayList<T> implements List<T> {
         int i = 0;
         while (i < size) {
             if (c.contains(arrayList[i])) {
-                fastRemove(arrayList, i);
+                shiftToLeft(i);
                 modyfied = true;
             } else {
                 i++;
